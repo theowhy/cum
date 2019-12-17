@@ -28,8 +28,7 @@ class MangadexSeries(BaseSeries):
 
     def _get_page(self, url):
         manga_id = re.search(self.url_re, url)
-        r = requests.get('https://mangadex.org/api/manga/' + manga_id.group(1),
-                         headers=MangadexSeries.headers)
+        r = requests.get('https://mangadex.org/api/manga/' + manga_id.group(1), headers=MangadexSeries.headers)
 
         # TODO FIXME replace with properly spaced api calls
         #            This is a bad workaround for
@@ -128,7 +127,7 @@ class MangadexChapter(BaseChapter):
                 else:
                     print('Unkown image type for url {}'.format(page))
                     raise ValueError
-                r = requests.get(image, stream=True)
+                r = requests.get(image, stream=False, headers=MangadexSeries.headers)
                 if r.status_code == 404:
                     r.close()
                     raise ValueError
