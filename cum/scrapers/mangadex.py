@@ -59,6 +59,7 @@ class MangadexSeries(BaseSeries):
             url = 'https://mangadex.org/chapter/' + c
             chapter = chapters[c]['chapter']
             title = chapters[c]['title'] if chapters[c]['title'] else None
+            volume = chapters[c]['volume'] if chapters[c]['volume'] else None
             language = chapters[c]['lang_code']
             # TODO: Add an option to filter by language.
             if language != 'gb':
@@ -67,6 +68,7 @@ class MangadexSeries(BaseSeries):
 
             result = MangadexChapter(name=manga_name, alias=self.alias,
                                      chapter=chapter,
+                                     volume=volume,
                                      url=url,
                                      groups=groups, title=title)
             result_chapters = [result] + result_chapters

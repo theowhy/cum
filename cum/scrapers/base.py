@@ -90,6 +90,7 @@ class BaseChapter(metaclass=ABCMeta):
         self.name = kwargs.get('name')
         self.alias = kwargs.get('alias')
         self.chapter = kwargs.get('chapter')
+        self.volume = kwargs.get('volume', None)
         self.title = kwargs.get('title', None)
         self.url = kwargs.get('url')
         self.groups = kwargs.get('groups', None)
@@ -198,6 +199,9 @@ class BaseChapter(metaclass=ABCMeta):
         # Failing all else, e.g. 'Special'. Becomes 'c000 [Special]'.
         else:
             chapter = 'c000 [{}]'.format(self.chapter)
+
+        if self.volume:
+            chapter = "vol{} - {}".format(self.volume, chapter)
 
         if self.groups:
             group = ''.join('[{}]'.format(g) for g in self.groups)

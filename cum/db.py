@@ -160,6 +160,7 @@ class Chapter(Base):
     # 1 for downloaded chapters.
     downloaded = Column(Integer, default=0)
     chapter = Column(String)
+    volume = Column(String)
     url = Column(String, unique=True)
     title = Column(String)
     added_on = Column(DateTime)
@@ -171,6 +172,7 @@ class Chapter(Base):
         self.series = series
         self.chapter = chapter.chapter
         self.title = chapter.title
+        self.volume = chapter.volume
         self.url = chapter.url
         self.added_on = datetime.datetime.now()
         self.api_id = getattr(chapter, 'api_id', None)
@@ -222,6 +224,7 @@ class Chapter(Base):
             'name': self.series.name,
             'alias': self.series.alias,
             'chapter': self.chapter,
+            'volume': self.volume,
             'url': self.url,
             'groups': self.groups,
             'directory': self.series.directory,
