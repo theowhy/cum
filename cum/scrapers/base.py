@@ -203,6 +203,9 @@ class BaseChapter(metaclass=ABCMeta):
         if self.volume:
             chapter = "vol{} - {}".format(self.volume, chapter)
 
+        if self.title:
+            chapter = "{} - {}".format(chapter, self.title)
+
         if self.groups:
             group = ''.join('[{}]'.format(g) for g in self.groups)
         else:
